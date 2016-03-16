@@ -35,8 +35,6 @@ switch(parameter)
     otherwise
         % rise error
 end
-
-
 end
 
 
