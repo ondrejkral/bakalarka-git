@@ -24,6 +24,6 @@ array(:,:,6) = a5; array(:,:,7) = a6; array(:,:,8) = a7; array(:,:,9) = a8; arra
 format short infsup;
 display('Skalna')
 ilspencskalna2(array,b,p)
-ilspenchbrref(array,b,p,ilspenchbr(array,b,p))
+ilspenchbr(array,b,p)
 ilspencmono(array,b,p, 'NOIMPROVE')
 end

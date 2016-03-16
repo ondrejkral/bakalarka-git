@@ -21,6 +21,9 @@ Z = Acenterinv*Z;
 for k = 1:length(p)
    D = D + ilspencgetak(A,k)*p(k);
 end
+% D must be H-matrix otherwise theorem not holds.
+% Some M-matrix testing here.
+
 D = Acenterinv*D;
 
 v = x + infsup(-1,1)*inv(mig(D))*mag(Z);
