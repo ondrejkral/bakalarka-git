@@ -29,7 +29,8 @@ switch(parameter)
     case 'NOIMPROVE'
         % no improvement for non-monotonous components
         for i= 1:length(x)
-            iv(i) = ilspencmonogetbound(A, b, p, D(i,:));
+            newx = ilspencmonogetbound(A, b, p, D(i,:));
+            iv(i) = newx(i);
         end
     otherwise
         % rise error

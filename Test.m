@@ -25,5 +25,5 @@ format short infsup;
 display('Skalna')
 ilspencskalna2(array,b,p)
 ilspenchbrref(array,b,p,ilspenchbr(array,b,p))
-ilspencmono(array,b,p)
+ilspencmono(array,b,p, 'NOIMPROVE')
 end

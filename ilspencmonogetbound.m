@@ -24,7 +24,7 @@ end
 % systems. Place for improvements here. Like if we shrink all parameters,
 % we can compute bounds directly.
 
-lowerx = ilspenchbr(A,b,lowep);
+lowerx = ilspenchbr(A,b,lowerp);
 upperx = ilspenchbr(A,b,upperp);
 
 iv = infsup(lowerx.inf,upperx.sup);
