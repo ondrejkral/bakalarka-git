@@ -1,4 +1,4 @@
-function iv = ilspencmono( A, b, p)
+function iv = ilspencmono( A, b, p, parameter)
 %ILSPENCMONO Method for solving interval linear system with dependencies
 %based on monotonicity approach.
 %   A template for handling this problem is presented. Various attitudes
@@ -23,8 +23,17 @@ end
 
 % Now we can comopute tight enclosures for dimensions of x in which 
 % is x with respect to p monotonous.
-
-
+% Several approaches to handling non-monotonous parameters can be applied.
+iv = intval(zeros(length(x),1));
+switch(parameter)
+    case 'NOIMPROVE'
+        % no improvement for non-monotonous components
+        for i= 1:length(x)
+            iv(i) = ilspencmonogetbound(A, b, p, D(i,:));
+        end
+    otherwise
+        % rise error
+end
 
 
 end
