@@ -8,7 +8,7 @@ Acenterinv = inv(Acenter);
 dimensions = ilspencmatrixdim(A);
 M = intval(zeros(dimensions));
 for k = 1:length(p)
-   M = M + radiusVector(k)*abs(Acenterinv*ilspencgetak(A,k));
+   M = M + radiusVector(k)*abs(Acenterinv*intval(ilspencgetak(A,k)));
 end
 
 if verspectrad(sup(M)) < 1 

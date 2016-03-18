@@ -7,7 +7,7 @@ function v = ilspencgetbk( b, k )
 global dataModel;
 switch(dataModel)
     case '3D'
-        v = intval(b(:,k));
+        v = b(:,k);
     case 'cell'
         % obtaining b-vector dimension and other meta-data
         m = b{1}(1);
@@ -36,9 +36,7 @@ switch(dataModel)
             otherwise
                 % rise error
         end
-        
-        v = intval(v);
-        
+                
 end
 
 end

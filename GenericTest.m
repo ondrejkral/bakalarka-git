@@ -9,8 +9,13 @@ radiusSample = [0.05, 0.1, 0.5, 1];
 coefMagMultSample = [5, 10, 15 20, 25];
 matrixDimSample = [10, 100];
 
-fileID = fopen('C:\Users\ondre\Documents\MATLAB\newTest.txt','a');
-fprintf(fileID,dataModel);
+fileName = strcat('test-',datestr(datetime(),'dd-mm-yy-HH-MM'),'.txt');
+fileLoc = 'C:\Users\ondre\Documents\MATLAB\';
+fileAddr = strcat(fileLoc,fileName);
+
+fileID = fopen(fileAddr,'a');
+
+fprintf(fileID,model);
 fclose(fileID);
 
 for l = 1:length(matrixDimSample)

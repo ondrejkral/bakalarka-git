@@ -4,7 +4,7 @@ function v = ilspencresidual( A, b, p, option )
 % Inicialization of general variables.
 v = NaN;
 % x-asterisk from Theorem 4.
-x = verifylss(ilspencmatrixcenter(A,p),ilspencbcenter(b ,p));
+x = inv(ilspencmatrixcenter(A,p))*ilspencbcenter(b ,p);
 
 [Ares, bres] = ilspencresidualform(A, b, p);
 

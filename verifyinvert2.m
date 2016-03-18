@@ -7,7 +7,7 @@ function v = verifyinvert2( A, b, p )
 R = inv(mid(Ares));
 C = eye(dim(Ares))-R*intval(Ares);
 
-if verspectrad(sup(C)) < 1 
+if verspectrad(sup(abs(C))) < 1 
     v = 1;
 else 
     v = 0;

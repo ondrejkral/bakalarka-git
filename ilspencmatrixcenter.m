@@ -6,7 +6,7 @@ parameterCenter = ilspenccenter(iparameterVector);
 
 % Allocation of zero matrix with correct size. 
 [m,n] = ilspencmatrixdim(A);
-V = intval(zeros(m,n));
+V = zeros(m,n);
 
 % Computing matrix at given center of parameter vector.
 for i = 1:length(iparameterVector)

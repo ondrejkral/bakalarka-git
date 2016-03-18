@@ -20,17 +20,17 @@ Acenterinv = inv(Acenter);
 x1 = Acenterinv*ilspencbcenter(b ,p);
 
 for k = 1:length(p)
-    a = verifylss(Acenter,(ilspencgetak(A,k)*x - ilspencgetbk(b,k)));
+    a = Acenterinv*(ilspencgetak(A,k)*x - ilspencgetbk(b,k));
     for j = 1:dimensions(1)
         if inf(a(j)) >= 0
-            Y(j,:) = Y(j,:) + radiusvector(k)*Acenterinv(j,:)*ilspencgetak(A,k);
-            y(j) = y(j) + radiusvector(k)*Acenterinv(j,:)*ilspencgetbk(b,k);
+            Y(j,:) = Y(j,:) + radiusvector(k)*Acenterinv(j,:)*intval(ilspencgetak(A,k));
+            y(j) = y(j) + radiusvector(k)*Acenterinv(j,:)*intval(ilspencgetbk(b,k));
         elseif sup(a(j)) <= 0
-            Y(j,:) = Y(j,:) - radiusvector(k)*Acenterinv(j,:)*ilspencgetak(A,k);
-            y(j) = y(j) - radiusvector(k)*Acenterinv(j,:)*ilspencgetbk(b,k);
+            Y(j,:) = Y(j,:) - radiusvector(k)*Acenterinv(j,:)*intval(ilspencgetak(A,k));
+            y(j) = y(j) - radiusvector(k)*Acenterinv(j,:)*intval(ilspencgetbk(b,k));
         else
-            Z(j,:) = Z(j,:) + radiusvector(k)*abs(Acenterinv(j,:)*ilspencgetak(A,k));
-            z(j) = z(j) + radiusvector(k)*abs(Acenterinv(j,:)*ilspencgetbk(b,k));
+            Z(j,:) = Z(j,:) + radiusvector(k)*abs(Acenterinv(j,:)*intval(ilspencgetak(A,k)));
+            z(j) = z(j) + radiusvector(k)*abs(Acenterinv(j,:)*intval(ilspencgetbk(b,k)));
         end
     end
 end

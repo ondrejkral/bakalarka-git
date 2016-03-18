@@ -17,12 +17,12 @@ x = Acenterinv*ilspencbcenter(b ,p);
 
 % Matrix M from Theorem 4.
 for k = 1:length(p)
-   M = M + radiusVector(k)*abs(Acenterinv*ilspencgetak(A,k));
+   M = M + radiusVector(k)*abs(Acenterinv*intval(ilspencgetak(A,k)));
 end
 
 % Summation in interval enclosure from Theorem 4.
 for k = 1:length(p)
-    C = C + radiusVector(k)*abs(Acenterinv*(ilspencgetak(A,k)*x - ilspencgetbk(b,k)));
+    C = C + radiusVector(k)*abs(Acenterinv*(ilspencgetak(A,k)*intval(x) - ilspencgetbk(b,k)));
 end
 
 s = verifylss(I - M,C);

@@ -14,11 +14,11 @@ radiusVector = ilspencradius(p);
 Acenter = ilspencmatrixcenter(A,p);
 Acenterinv = inv(Acenter);
 % x-asterisk from Theorem 4.
-x = Acenterinv*ilspencbcenter(b ,p);
+x = intval(Acenterinv*ilspencbcenter(b ,p));
 
 % Matrix M from Theorem 4.
 for k = 1:length(p)
-   M = M + radiusVector(k)*abs(Acenterinv*ilspencgetak(A,k));
+   M = M + radiusVector(k)*abs(Acenterinv*intval(ilspencgetak(A,k)));
 end
 
 %M-asteriks from Theorem 5.
@@ -27,7 +27,7 @@ M2 = inv(M0);
 
 % Summation in x upper-index zero definition from Theorem 5.
 for k = 1:length(p)
-    C = C + radiusVector(k)*abs(Acenterinv*ilspencgetbk(b,k));
+    C = C + radiusVector(k)*abs(Acenterinv*intval(ilspencgetbk(b,k)));
 end
 
 % x upper-index zero from Theorem 5. !!!
