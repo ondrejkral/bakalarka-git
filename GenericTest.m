@@ -24,7 +24,7 @@ for l = 1:length(matrixDimSample)
         coefmagnitude = coefMagMultSample(k);
         for c = 1:length(radiusSample)
             radius = radiusSample(c);
-            fileID = fopen('C:\Users\ondre\Documents\MATLAB\newTest.txt','a');
+            fileID = fopen(fileAddr,'a');
             
             t = zeros(1,6); r = zeros(1,6);
             skips = zeros(1,6);
@@ -62,7 +62,7 @@ for l = 1:length(matrixDimSample)
                     t(2) = t(2) + toc;
                     r(2) = r(2) + avgradius(r1);
                     solution(:,2) = solution(:,2) + mid(r1);
-                    refcheck(x1,r1, 'bauer-skeel');
+                    %refcheck(x1,r1, 'bauer-skeel');
 
                     %disp('Hans-Bliek-Rohn enclosure');
                     tic;
@@ -77,7 +77,7 @@ for l = 1:length(matrixDimSample)
                     t(4) = t(4) + toc;
                     r(4) = r(4) + avgradius(r2);
                     solution(:,4) = solution(:,4) + mid(r2);
-                    refcheck(x2,r2, 'hans-bliek-rohn');
+                    %refcheck(x2,r2, 'hans-bliek-rohn');
                 end
                 
                 if (~verifyinvert2(A,b,p))
