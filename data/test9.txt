@@ -1,7 +1,0 @@
-Magnitude of coefs: 1.0000
-Radius: 1.000000e-02
-MatrixDim: 10
-Magnitude of coefs: 1.0000
-Radius: 1.000000e-02
-MatrixDim: 10
-Time: 
