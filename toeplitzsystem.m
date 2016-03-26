@@ -1,19 +1,24 @@
 function [ A, b, p ] = toeplitzsystem( coefmagnitude, radius, matrixmagnitude)
+% Number of parameters needed.
+parametersCount = 2*matrixmagnitude - 1;
+
+% Random center of parameters. First parameter is diagonal one, so we 
+% made it bigger to avoid irregularity.
+random = -10 + 20*rand(parametersCount,1);
+random(1) = random(1) + 10*matrixmagnitude;
+% parameters vector
+p = midrad(random,radius);
+
+% random vector
+% randomBCenter = -coefmagnitude + (2*coefmagnitude)*rand(matrixmagnitude,1);
+randomBCenter = -10 + 20*rand(1,dimension);
 
 global dataModel;
 
-% random center of parameters
-random = -coefmagnitude + (2*coefmagnitude)*rand(2*matrixmagnitude - 1,1);
-p = intval(zeros(1,2*matrixmagnitude - 1));
-% first parameter is set as
-p(1) = intval('1');
-for i = 2:(2*matrixmagnitude - 1)
-    p(i) = midrad(random(i),radius);
-end
-% ///
-
 switch(dataModel)
     case '3D'
+        
+        % matrix A representation
         A = zeros(matrixmagnitude,matrixmagnitude,2*matrixmagnitude - 1);
         
         c = zeros(matrixmagnitude,1); c(1) = 1;
@@ -32,9 +37,13 @@ switch(dataModel)
             r = circshift(r,1);
         end
 
+        % vector b representation
         b = zeros(matrixmagnitude,2*matrixmagnitude-1);
-        b(:,1) = -coefmagnitude + (2*coefmagnitude)*rand(matrixmagnitude,1);
+        b(:,1) = randomBCenter;
+               
     case 'cell'
+        
+        % matrix A representation
         A{1} = [ matrixmagnitude; matrixmagnitude; 0;];
         b{1} = [matrixmagnitude; 0;];
         
@@ -50,7 +59,9 @@ switch(dataModel)
                 A{matrixmagnitude + i}(:,j)=[(j+i-1); j; 1;];
             end
         end
-        randomvector = -coefmagnitude + (2*coefmagnitude)*rand(matrixmagnitude,1);
+        
+        % vector b representation
+        randomvector = randomBCenter;
         for j = 1:matrixmagnitude 
             b{2}(:,j) =[ j; randomvector(j);] ;
         end

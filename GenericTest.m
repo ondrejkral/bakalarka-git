@@ -127,4 +127,3 @@ for l = 1:length(matrixDimSample)
     end
 end
 end
-
