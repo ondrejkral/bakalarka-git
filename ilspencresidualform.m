@@ -8,10 +8,10 @@ bres = intval(zeros(dimensions(1),1));
 C = ilspencmatrixcenter(A,p);
 Cinv = inv(C);
 % x-asterisk from Theorem 4.
-x = C*ilspencbcenter(b ,p);
+x = Cinv*ilspencbcenter(b ,p);
 
 for k = 1:length(p)
-    Ares = Ares + p(k)*(Cinv*intval(intval(ilspencgetak(A,k))));
+    Ares = Ares + p(k)*(Cinv*intval(ilspencgetak(A,k)));
 end
 
 for k = 1:length(p)

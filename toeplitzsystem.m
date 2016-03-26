@@ -5,8 +5,9 @@ global dataModel;
 % random center of parameters
 random = -coefmagnitude + (2*coefmagnitude)*rand(2*matrixmagnitude - 1,1);
 p = intval(zeros(1,2*matrixmagnitude - 1));
-
-for i = 1:(2*matrixmagnitude - 1)
+% first parameter is set as
+p(1) = intval('1');
+for i = 2:(2*matrixmagnitude - 1)
     p(i) = midrad(random(i),radius);
 end
 % ///

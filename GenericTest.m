@@ -4,20 +4,14 @@ format long infsup;
 rng(23101993, 'twister');
 global dataModel;
 dataModel = model;
-iterations = 10;
+iterations = 15;
 radiusSample = [0.05, 0.1, 0.5, 1];
 coefMagMultSample = [5, 10, 15 20, 25];
 matrixDimSample = [5, 10, 15, 20, 25 50, 100];
 
-fileName = strcat('test-',datestr(datetime(),'dd-mm-yy-HH-MM'),'.txt');
+fileName = strcat('test-',datestr(datetime(),'dd-mm-yy-HH-MM'),model,matrixType,'.txt');
 fileLoc = 'C:\Users\ondre\Documents\MATLAB\';
 fileAddr = strcat(fileLoc,fileName);
-
-fileID = fopen(fileAddr,'a');
-
-fprintf(fileID,model);
-fclose(fileID);
-
 for l = 1:length(matrixDimSample)
      matrixdim = matrixDimSample(l);
     for k = 1:length(coefMagMultSample)
@@ -86,9 +80,14 @@ for l = 1:length(matrixDimSample)
                     %disp('Residual method with RUMP');
                     tic
                     x3 = ilspencresidual(A, b, p, 'RUMP');
-                    t(5) = t(5) + toc;
-                    r(5) = r(5) + avgradius(x3);
-                    solution(:,5) = solution(:,5) + mid(x3);
+                    elapsed = toc;
+                    if( ~isnan(x3))
+                        t(5) = t(5) + elapsed;
+                        r(5) = r(5) + avgradius(x3);
+                        solution(:,5) = solution(:,5) + mid(x3);
+                    else
+                        skips(5) = skips(5) + 1;
+                    end
                 end
                 
                 if (~verifyinvert3(A,b,p))
@@ -121,7 +120,7 @@ for l = 1:length(matrixDimSample)
             end
             
             for a = 1:6
-                fprintf(fileID,'%.8f %.8f %d %d %d %d\n',resultradius(a),resulttime(a),matrixdim, coefmagnitude,a,skips(a));
+                fprintf(fileID,'%.8f %.8f %d %d %d %d %d\n',resultradius(a),resulttime(a),matrixdim, radius, coefmagnitude,a,skips(a));
             end
             fclose(fileID);
         end
